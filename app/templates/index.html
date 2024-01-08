@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Server</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--Upload Function-->
+    <div class="container mt-5">
+      <h2>File Upload</h2>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="fileInput" class="form-label">Select File</label>
+          <input class="form-control" type="file" id="fileInput" name="file" />
+        </div>
+        <button type="submit" class="btn btn-primary">Uplodad</button>
+      </form>
+
+      <!--List and Download Function-->
+      <h2 class="mt-5">FIle List</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>File name</th>
+            <th>File size</th>
+            <th>Upload date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- get files from backend -->
+          {% for file in files %}
+          <tr>
+            <td>{{ file.name }}</td>
+            <td>{{ file.size }}</td>
+            <td>{{ file.upload_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

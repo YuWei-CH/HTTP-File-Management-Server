@@ -17,4 +17,6 @@ class File(db.Model):
     size = db.Column(db.BigInteger)
     upload_date = db.Column(db.DateTime)
     mime_type = db.Column(db.String(50))
-    data = db.Column(db.LargeBinary)
+    data = db.Column(db.LargeBinary(length=4294967295))  # support up to 4GB
+    hash = db.Column(db.String(64))  # use hash to avoid duplicate files
+
