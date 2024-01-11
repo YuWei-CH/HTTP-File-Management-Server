@@ -162,3 +162,14 @@ def download_file(file_id):
         )
     else:
         return "Unknow Error", 404
+
+# delete file
+@app.route("/delete/<int:file_id>", methods=["DELETE"])
+def delete_file(file_id):
+    file_to_delete = File.query.get(file_id)
+    if file_to_delete:
+        db.session.delete(file_to_delete)
+        db.session.commit()
+        return jsonify(message="File deleted successfully"), 200
+    else:
+        return jsonify(message="File not found or Unknow Error"), 404
